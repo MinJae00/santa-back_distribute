@@ -15,29 +15,31 @@ from django.core import serializers
 from accounts.models import User
 import jwt, json
 
-
 SECRET_KEY = "christmas"
 ALGORITHM = "HS256"
 
 def sendMixdeer(u_id): # 완성된 사슴 객체 보내기, 사슴 객체 개수 구해야 함. 랜덤으로
+    
     user = User.objects.get(u_id = u_id['id'])
 
-    num = 7
-    ran = random.randint(1,num)
-    _horn = (deer.objects.get(pk = ran)).horn
+    num = 8
+    ran = random.randint(2,num)
+    _horn = (deer.objects.get(id = ran)).horn
     
-    ran = random.randint(1,num)
-    _hair = (deer.objects.get(pk = ran)).hair
+    ran = random.randint(2,num)
+    _hair = (deer.objects.get(id = ran)).hair
     
-    ran = random.randint(1,num)
-    _eye = (deer.objects.get(pk = ran)).eye
+    ran = random.randint(2,num)
+    _eye = (deer.objects.get(id = ran)).eye
     
-    ran = random.randint(1,num)
-    _body_color = (deer.objects.get(pk = ran)).body_color
+    ran = random.randint(2,num)
+    _body_color = (deer.objects.get(id = ran)).body_color
     
-    ran = random.randint(1,num)
-    _body_deco = (deer.objects.get(pk = ran)).body_deco
+    ran = random.randint(2,num)
+    _body_deco = (deer.objects.get(id = ran)).body_deco
     
+    print(_horn,_hair,_eye,_body_color,_body_deco)
+
     
     mixDeer.objects.create(
             user_id = user,
@@ -48,6 +50,7 @@ def sendMixdeer(u_id): # 완성된 사슴 객체 보내기, 사슴 객체 개수
             m_body_deco = _body_deco
         )
     
+    print(234020239458203495820349850234985023985023948)
     #가장 최근에 얻은 걸 내보내줘야
     
     datadict = {
@@ -58,6 +61,7 @@ def sendMixdeer(u_id): # 완성된 사슴 객체 보내기, 사슴 객체 개수
         "m_body_deco" : _body_deco
     }
     
+    print(datadict)
     
     
     return JsonResponse(datadict)
