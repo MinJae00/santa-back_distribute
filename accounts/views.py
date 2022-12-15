@@ -25,17 +25,7 @@ class KakaoLogin(APIView):
         kakao_response=requests.post(url,headers=headers)
         kakao_response=json.loads(kakao_response.text)
         
-        RealWreath.objects.create(
-              
-                orn1 = -1,
-                orn2 = -1,    
-                orn3 = -1,
-                orn4 = -1,            
-                orn5 = -1,               
-                orn6 = -1,               
-                user_id = kakao_response['id'],                 
-                orn7 = -1
-        )
+        
 
         if User.objects.filter(u_id=kakao_response['id']).exists():
             user= User.objects.get(u_id=kakao_response['id'])
@@ -49,6 +39,7 @@ class KakaoLogin(APIView):
                
             return JsonResponse(datadict)
         else: 
+            
 
             jwt_token = jwt.encode({'id':kakao_response['id']}, SECRET_KEY, ALGORITHM)
        
@@ -59,6 +50,17 @@ class KakaoLogin(APIView):
                 
             ).save()
             
+            RealWreath.objects.create(
+              
+                orn1 = -1,
+                orn2 = -1,    
+                orn3 = -1,
+                orn4 = -1,            
+                orn5 = -1,               
+                orn6 = -1,               
+                user_id = kakao_response['id'],                 
+                orn7 = -1
+        )
             
             
 
