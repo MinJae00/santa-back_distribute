@@ -86,7 +86,6 @@ class RealWreathView(APIView):
         
         user = User.objects.get(u_id=user_id['id'])
         
-        print(23509122304958)
         RealWreath.objects.create(
             orn1 = -1,
             orn2 = -1,    
@@ -94,12 +93,11 @@ class RealWreathView(APIView):
             orn4 = -1,            
             orn5 = -1,               
             orn6 = -1,               
-            user_id = user.u_id,                 
+            user_id = user,                 
             orn7 = -1
         )
         
-            
-            
+        
         if RealWreath.objects.filter(user_id = user.u_id).exists():
     
 
