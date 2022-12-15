@@ -83,7 +83,7 @@ class RealWreathView(APIView):
         user_jwt = request.GET.get('jwt',None)
         user_id = jwt.decode(user_jwt,SECRET_KEY,algorithms=ALGORITHM)
         
-        if not RealWreath.objects.filter(user_id = user_id['id']).exists():
+        if not RealWreath.objects.filter(user_id = user_id).exists():
             RealWreath.objects.create(
                 orn1 = -1,
                 orn2 = -1,    
@@ -91,7 +91,7 @@ class RealWreathView(APIView):
                 orn4 = -1,            
                 orn5 = -1,               
                 orn6 = -1,               
-                user_id = user_id['id'],                 
+                user_id = user_id,                 
                 orn7 = -1
             )
             
