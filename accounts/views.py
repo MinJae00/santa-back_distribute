@@ -49,11 +49,6 @@ class KakaoLogin(APIView):
                 jwt=jwt_token
                 
             ).save()
-            
-            
-            
-            
-            
 
             user = User.objects.get(u_id=kakao_response['id'])
             datadict = {

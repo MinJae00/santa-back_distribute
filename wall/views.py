@@ -99,7 +99,7 @@ class RealWreathView(APIView):
         )
             
             
-        if RealWreath.objects.filter(user_id = user_id['id']).exists():
+        if RealWreath.objects.filter(user_id = user.u_id).exists():
     
 
             user_wreath = RealWreath.objects.get(user_id = user_id['id'])
