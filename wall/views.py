@@ -189,6 +189,7 @@ def addOrnament(user_id,orn_src):
     user = User.objects.get(u_id = user_id['id'])
     
     
+    
     # if not OrnamentList.objects.filter(user_id=user.u_id).exists():
         
     #     OrnamentList.objects.create(
@@ -204,10 +205,14 @@ def addOrnament(user_id,orn_src):
     #         src10 = -1,
     #         user_id = user          
     #     )
-
-    
+    print("############")
+    print(orn_src)
+    print(user.solve_count)
+    print("#########")
     if OrnamentList.objects.filter(user_id=user_id['id']).exists():
+        
         user_ornamentlist = OrnamentList.objects.get(user_id = user.u_id)
+        
         if user_ornamentlist.src1 =='-1' and user.solve_count == 1:
             user_ornamentlist.src1 = orn_src
             user_ornamentlist.save()
