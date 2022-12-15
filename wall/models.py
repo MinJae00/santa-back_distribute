@@ -1,4 +1,3 @@
-# Create your models here.
 from django.db import models
 
 
@@ -21,13 +20,13 @@ class mixDeer(models.Model):
     
 class RealWreath(models.Model):
     user_id = models.ForeignKey("accounts.User", related_name = "user_RealWreath", on_delete = models.CASCADE, db_column = "user_id", unique=True)
-    orn1 = models.SmallIntegerField(default=-1)
-    orn2 = models.SmallIntegerField(default=-1)
-    orn3 = models.SmallIntegerField(default=-1)
-    orn4 = models.SmallIntegerField(default=-1)
-    orn5 = models.SmallIntegerField(default=-1)
-    orn6 = models.SmallIntegerField(default=-1)
-    orn7 = models.SmallIntegerField(default=-1)
+    orn1 = models.CharField(max_length=200,default=-1)
+    orn2 = models.CharField(max_length=200,default=-1)
+    orn3 = models.CharField(max_length=200,default=-1)
+    orn4 = models.CharField(default=-1,max_length=200)
+    orn5 = models.CharField(default=-1,max_length=200)
+    orn6 = models.CharField(default=-1,max_length=200)
+    orn7 = models.CharField(default=-1,max_length=200)
     def __str__(self):
         return str(str(self.user_id)+"님의 리스")
 
@@ -48,12 +47,12 @@ class OrnamentList(models.Model):
 
 class Sock(models.Model):
     user_id = models.ForeignKey("accounts.User", related_name = "user_sock", on_delete = models.CASCADE, db_column = "u_id", unique=True)
-    sock1_name = models.CharField(max_length=200,default=-1)
-    sock1_img = models.CharField(max_length=200,default=-1)
-    sock2_name = models.CharField(max_length=200,default=-1)
-    sock2_img = models.CharField(max_length=200,default=-1)
-    sock3_name = models.CharField(max_length=200,default=-1)
-    sock3_img = models.CharField(max_length=200,default=-1)
+    sock1_name = models.CharField(max_length=200,default=None,blank=True, null=True)
+    sock1_img = models.CharField(max_length=200,default=None,blank=True, null=True)
+    sock2_name = models.CharField(max_length=200,default=None,blank=True, null=True)
+    sock2_img = models.CharField(max_length=200,default=None,blank=True, null=True)
+    sock3_name = models.CharField(max_length=200,default=None,blank=True, null=True)
+    sock3_img = models.CharField(max_length=200,default=None,blank=True, null=True)
 
     def __str__(self):
         return str(str(self.user_id)+"님의 소원양말")
