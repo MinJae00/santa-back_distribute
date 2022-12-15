@@ -46,6 +46,7 @@ class KakaoLogin(APIView):
             User(
                 u_id=kakao_response['id'],
                 username=kakao_response['properties']['nickname'],
+                nickname = "임시닉네임",
                 jwt=jwt_token
                 
             ).save()
