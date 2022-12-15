@@ -188,6 +188,7 @@ class RealWreathView(APIView):
 def addOrnament(user_id,orn_src):
     user = User.objects.get(u_id = user_id['id'])
     
+    
     # if not OrnamentList.objects.filter(user_id=user.u_id).exists():
         
     #     OrnamentList.objects.create(
@@ -207,43 +208,43 @@ def addOrnament(user_id,orn_src):
     
     if OrnamentList.objects.filter(user_id=user_id['id']).exists():
         user_ornamentlist = OrnamentList.objects.get(user_id = user.u_id)
-        if user_ornamentlist.src1 =='-1':
+        if user_ornamentlist.src1 =='-1' and user.solve_count == 1:
             user_ornamentlist.src1 = orn_src
             user_ornamentlist.save()
             return JsonResponse({"응답":"1번 오너먼트 자리에 src를 저장했습니다!"})
-        if user_ornamentlist.src2 == '-1':
+        if user_ornamentlist.src2 == '-1' and user.solve_count == 2:
             user_ornamentlist.src2 = orn_src
             user_ornamentlist.save()
             return JsonResponse({"응답":"2번 오너먼트 자리에 src를 저장했습니다!"})
-        if user_ornamentlist.src3 == '-1':
+        if user_ornamentlist.src3 == '-1' and user.solve_count == 3:
             user_ornamentlist.src3 = orn_src
             user_ornamentlist.save()
             return JsonResponse({"응답":"3번 오너먼트 자리에 src를 저장했습니다!"})
-        if user_ornamentlist.src4 == '-1':
+        if user_ornamentlist.src4 == '-1' and user.solve_count == 4:
             user_ornamentlist.src4 = orn_src
             user_ornamentlist.save()
             return JsonResponse({"응답":"4번 오너먼트 자리에 src를 저장했습니다!"})
-        if user_ornamentlist.src5 == '-1':
+        if user_ornamentlist.src5 == '-1' and user.solve_count == 5:
             user_ornamentlist.src5 = orn_src
             user_ornamentlist.save()
             return JsonResponse({"응답":"5번 오너먼트 자리에 src를 저장했습니다!"})
-        if user_ornamentlist.src6 == '-1':
+        if user_ornamentlist.src6 == '-1' and user.solve_count == 6:
             user_ornamentlist.src6 = orn_src
             user_ornamentlist.save()
             return JsonResponse({"응답":"6번 오너먼트 자리에 src를 저장했습니다!"})
-        if user_ornamentlist.src7 == '-1':
+        if user_ornamentlist.src7 == '-1' and user.solve_count == 7:
             user_ornamentlist.src7 = orn_src
             user_ornamentlist.save()
             return JsonResponse({"응답":"7번 오너먼트 자리에 src를 저장했습니다!"})
-        if user_ornamentlist.src8 == '-1':
+        if user_ornamentlist.src8 == '-1' and user.solve_count == 8:
             user_ornamentlist.src8 = orn_src
             user_ornamentlist.save()
             return JsonResponse({"응답":"8번 오너먼트 자리에 src를 저장했습니다!"})
-        if user_ornamentlist.src9 == '-1':
+        if user_ornamentlist.src9 == '-1' and user.solve_count == 9:
             user_ornamentlist.src9 = orn_src
             user_ornamentlist.save()
             return JsonResponse({"응답":"9번 오너먼트 자리에 src를 저장했습니다!"})
-        if user_ornamentlist.src10 == '-1':
+        if user_ornamentlist.src10 == '-1' and user.solve_count == 10:
             user_ornamentlist.src10 = orn_src
             user_ornamentlist.save()
             return JsonResponse({"응답":"10번 오너먼트 자리에 src를 저장했습니다!"})
