@@ -82,9 +82,15 @@ class RealWreathView(APIView):
     def get(self, request):
         user_jwt = request.GET.get('jwt',None)
         user_id = jwt.decode(user_jwt,SECRET_KEY,algorithms=ALGORITHM)
+        
+        
+            
+        
+        if RealWreath.objects.filter(user_id = user_id['id']).exists():
+    
 
-        user_wreath = RealWreath.objects.get(user_id = user_id['id'])
-        datadict = {
+            user_wreath = RealWreath.objects.get(user_id = user_id['id'])
+            datadict = {
                 "ornaments" : [
                     user_wreath.orn1,
                     user_wreath.orn2,
@@ -95,6 +101,19 @@ class RealWreathView(APIView):
                     user_wreath.orn7,
                 ]
             }
+            
+        else:
+            RealWreath.objects.create(
+                orn1 = -1,
+                orn2 = -1,    
+                orn3 = -1,
+                orn4 = -1,            
+                orn5 = -1,               
+                orn6 = -1,               
+                user_id = user_id['id'],                 
+                orn7 = -1
+            ).save()
+            
         return JsonResponse(datadict)
 
     def post(self, request):

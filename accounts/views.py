@@ -50,16 +50,8 @@ class KakaoLogin(APIView):
                 
             ).save()
             
-            RealWreath.objects.create(
-                orn1 = -1,
-                orn2 = -1,    
-                orn3 = -1,
-                orn4 = -1,            
-                orn5 = -1,               
-                orn6 = -1,               
-                user_id = kakao_response['id'],                 
-                orn7 = -1
-            ).save()
+            
+        
             
             
 
