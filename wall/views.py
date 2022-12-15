@@ -86,17 +86,21 @@ class RealWreathView(APIView):
         
         user = User.objects.get(u_id=user_id['id'])
         
-        RealWreath.objects.create(
-            orn1 = -1,
-            orn2 = -1,    
-            orn3 = -1,
-            orn4 = -1,            
-            orn5 = -1,               
-            orn6 = -1,               
-            user_id = user,                 
-            orn7 = -1
-        )
         
+        
+        if not RealWreath.objects.filter(user_id = user.u_id).exists():
+            
+            RealWreath.objects.create(
+                orn1 = -1,
+                orn2 = -1,    
+                orn3 = -1,
+                orn4 = -1,            
+                orn5 = -1,               
+                orn6 = -1,               
+                user_id = user,                 
+                orn7 = -1
+            )
+            
         
         if RealWreath.objects.filter(user_id = user.u_id).exists():
     
@@ -316,8 +320,9 @@ class SolveQuestion(APIView):
                 
 
 class SocksView(APIView):
+    
     def post(self, request):
-        
+
         num=request.data.get('num',None)
         user_jwt = request.data.get('jwt',None)
         user_id = jwt.decode(user_jwt,SECRET_KEY,algorithms=ALGORITHM)
@@ -364,9 +369,24 @@ class SocksView(APIView):
     def get(self, request):
         user_jwt = request.GET.get('jwt',None)
         user_id = jwt.decode(user_jwt,SECRET_KEY,algorithms=ALGORITHM)
+        user = User.objects.get(u_id = user_id['id'])
+        
+        if not Sock.objects.filter(user_id = user.u_id).exists():
+            Sock.objects.create(
+                user_id = user,
+                sock1_name = "null",
+                sock1_img = "null",
+                sock2_name = "null",
+                sock2_img = "null",
+                sock3_name = "null",
+                sock3_img = "null",
+            )
+        
         sock = Sock.objects.get(user_id = user_id['id'])
         num = request.GET.get('num',None)
-
+        
+        
+            
         if(num == '1'):
             datadict = {
                 "name" : sock.sock1_name,
