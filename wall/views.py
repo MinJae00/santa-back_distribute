@@ -97,6 +97,8 @@ class RealWreathView(APIView):
             user_id = user.u_id,                 
             orn7 = -1
         )
+        
+        print(234512341234123412)
             
             
         if RealWreath.objects.filter(user_id = user.u_id).exists():
