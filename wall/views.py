@@ -181,9 +181,26 @@ class RealWreathView(APIView):
         else:
             return JsonResponse({"error":"RealWreath DB에 등록되어있지 않은 사용자 입니다."})
         
-
 def addOrnament(user_id,orn_src):
     user = User.objects.get(u_id = user_id['id'])
+    
+    # if not OrnamentList.objects.filter(user_id=user.u_id).exists():
+        
+    #     OrnamentList.objects.create(
+    #         src1 = -1,
+    #         src2 = -1,
+    #         src3 = -1, 
+    #         src4 = -1,
+    #         src5 = -1,
+    #         src6 = -1,
+    #         src7 = -1,
+    #         src8 = -1,
+    #         src9 = -1,
+    #         src10 = -1,
+    #         user_id = user          
+    #     )
+
+    
     if OrnamentList.objects.filter(user_id=user_id['id']).exists():
         user_ornamentlist = OrnamentList.objects.get(user_id = user.u_id)
         if user_ornamentlist.src1 =='-1':
@@ -230,14 +247,32 @@ def addOrnament(user_id,orn_src):
         return JsonResponse({"error":"Ornamentlist DB에 등록되어있지 않은 사용자 입니다."})
     return JsonResponse({"응답":"오너먼트를 다 받았어요!"})
 
+
+
 class OrnamentView(APIView):
     def post(self,request): #delete Ornament
         user_jwt = request.data.get('jwt',None)
         orn_src = request.data.get('src',None)
         user_id = jwt.decode(user_jwt,SECRET_KEY,algorithms=ALGORITHM)
         user = User.objects.get(u_id = user_id['id'])
-        user_ornamentlist = OrnamentList.objects.get(user_id = user.u_id)
+        
+        if not OrnamentList.objects.filter(user_id=user_id['id']).exists():
+        
+            OrnamentList.objects.create(
+                src1 = -1,
+                src2 = -1,
+                src3 = -1, 
+                src4 = -1,
+                src5 = -1,
+                src6 = -1,
+                src7 = -1,
+                src8 = -1,
+                src9 = -1,
+                src10 = -1,
+                user_id = user          
+            )
 
+        user_ornamentlist = OrnamentList.objects.get(user_id = user.u_id)
 
         if user_ornamentlist.src1 == orn_src :
             user_ornamentlist.src1 = '-1'
@@ -287,8 +322,25 @@ class OrnamentView(APIView):
         print(type(user_jwt))
         user_id = jwt.decode(user_jwt,SECRET_KEY,algorithms=ALGORITHM)
         user = User.objects.get(u_id = user_id['id'])
-        user_ornamentlist = OrnamentList.objects.get(user_id = user.u_id)
+        
+        if not OrnamentList.objects.filter(user_id=user_id['id']).exists():
+        
+            OrnamentList.objects.create(
+                src1 = -1,
+                src2 = -1,
+                src3 = -1, 
+                src4 = -1,
+                src5 = -1,
+                src6 = -1,
+                src7 = -1,
+                src8 = -1,
+                src9 = -1,
+                src10 = -1,
+                user_id = user          
+            )
 
+
+        user_ornamentlist = OrnamentList.objects.get(user_id = user.u_id)
         datadict ={
                 "src1" :user_ornamentlist.src1,
                 "src2" :user_ornamentlist.src2,
