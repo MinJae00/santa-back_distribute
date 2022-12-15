@@ -80,8 +80,12 @@ class deerList(APIView):
 
 class RealWreathView(APIView):    
     def get(self, request):
+        
         user_jwt = request.GET.get('jwt',None)
         user_id = jwt.decode(user_jwt,SECRET_KEY,algorithms=ALGORITHM)
+        
+        user = User.objects.get(u_id=user_id['id'])
+        
         
         RealWreath.objects.create(
             orn1 = -1,
@@ -90,7 +94,7 @@ class RealWreathView(APIView):
             orn4 = -1,            
             orn5 = -1,               
             orn6 = -1,               
-            user_id = user_id,                 
+            user_id = user.u_id,                 
             orn7 = -1
         )
             
