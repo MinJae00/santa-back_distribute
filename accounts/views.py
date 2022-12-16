@@ -6,7 +6,7 @@ from django.utils.translation import gettext_lazy as _
 from django.http import JsonResponse
 
 from accounts.models import User
-from wall.models import Sock, RealWreath
+from wall.models import Sock, RealWreath,OrnamentList
 from rest_framework.views import APIView
 
 # Create your views here.
@@ -58,6 +58,20 @@ class KakaoLogin(APIView):
                 "solve_count" : user.solve_count,
                 "nickname" : user.nickname,
             }
+            
+            OrnamentList.objects.create(
+                src1 = -1,
+                src2 = -1,
+                src3 = -1, 
+                src4 = -1,
+                src5 = -1,
+                src6 = -1,
+                src7 = -1,
+                src8 = -1,
+                src9 = -1,
+                src10 = -1,
+                user_id = user          
+            )
 
             if type(jwt_token) != str:
                 datadict["token"] = jwt_token.decode('utf-8')

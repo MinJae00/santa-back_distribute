@@ -210,13 +210,13 @@ def addOrnament(user_id,orn_src):
     print(user.solve_count)
     print("#########")
     
+    
     if OrnamentList.objects.filter(user_id=user_id['id']).exists():
         print("유저는 있다유저는 있다유저는 있다유저는 있다유저는 있다유저는 있다유저는 있다유저는 있다유저는 있다유저는 있다유저는 있다")
         
         user_ornamentlist = OrnamentList.objects.get(user_id = user.u_id)
         
         if user_ornamentlist.src1 =='-1' and user.solve_count == 1:
-            print("11111111111111111111111111")
             user_ornamentlist.src1 = orn_src
             user_ornamentlist.save()
             return JsonResponse({"응답":"1번 오너먼트 자리에 src를 저장했습니다!"})
@@ -270,21 +270,6 @@ class OrnamentView(APIView):
         user_id = jwt.decode(user_jwt,SECRET_KEY,algorithms=ALGORITHM)
         user = User.objects.get(u_id = user_id['id'])
         
-        if not OrnamentList.objects.filter(user_id=user_id['id']).exists():
-        
-            OrnamentList.objects.create(
-                src1 = -1,
-                src2 = -1,
-                src3 = -1, 
-                src4 = -1,
-                src5 = -1,
-                src6 = -1,
-                src7 = -1,
-                src8 = -1,
-                src9 = -1,
-                src10 = -1,
-                user_id = user          
-            )
 
         user_ornamentlist = OrnamentList.objects.get(user_id = user.u_id)
 
