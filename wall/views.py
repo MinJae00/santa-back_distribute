@@ -209,7 +209,9 @@ def addOrnament(user_id,orn_src):
     print(orn_src)
     print(user.solve_count)
     print("#########")
+    
     if OrnamentList.objects.filter(user_id=user_id['id']).exists():
+        print("유저는 있다유저는 있다유저는 있다유저는 있다유저는 있다유저는 있다유저는 있다유저는 있다유저는 있다유저는 있다유저는 있다")
         
         user_ornamentlist = OrnamentList.objects.get(user_id = user.u_id)
         
