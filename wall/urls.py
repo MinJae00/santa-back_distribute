@@ -11,3 +11,7 @@ urlpatterns = [
 	path('socks/',views.SocksView.as_view(), name="socks")
 
 ]
+
+
+
+
