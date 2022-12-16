@@ -214,6 +214,7 @@ def addOrnament(user_id,orn_src):
         user_ornamentlist = OrnamentList.objects.get(user_id = user.u_id)
         
         if user_ornamentlist.src1 =='-1' and user.solve_count == 1:
+            print("11111111111111111111111111")
             user_ornamentlist.src1 = orn_src
             user_ornamentlist.save()
             return JsonResponse({"응답":"1번 오너먼트 자리에 src를 저장했습니다!"})
