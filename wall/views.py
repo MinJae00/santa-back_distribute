@@ -257,6 +257,7 @@ def addOrnament(user_id,orn_src):
             user_ornamentlist.save()
             return JsonResponse({"응답":"10번 오너먼트 자리에 src를 저장했습니다!"})
     else:
+        print("없는 유저입니다.")
         return JsonResponse({"error":"Ornamentlist DB에 등록되어있지 않은 사용자 입니다."})
     return JsonResponse({"응답":"오너먼트를 다 받았어요!"})
 
