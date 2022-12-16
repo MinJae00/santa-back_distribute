@@ -285,9 +285,11 @@ class SolveQuestion(APIView):
         orn_src = request.data.get('src',None)
         user_id = jwt.decode(user_jwt,SECRET_KEY,algorithms=ALGORITHM)
         user = User.objects.get(u_id = user_id['id'])
+
         user.solve_count += 1
         solve_count=user.solve_count
         user.save()
+        
         sendMixdeer(user_id)
         addOrnament(user_id,orn_src)
 
