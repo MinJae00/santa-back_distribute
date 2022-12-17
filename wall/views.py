@@ -372,4 +372,3 @@ class SocksView(APIView):
         
         else: 
             return JsonResponse({"error":"num이 1~3을 벗어낫습니다"})
-            
